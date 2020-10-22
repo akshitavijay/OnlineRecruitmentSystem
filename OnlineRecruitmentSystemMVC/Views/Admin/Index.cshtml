@@ -1,0 +1,88 @@
+﻿@model IEnumerable<OnlineRecruitmentSystemMVC.Models.UserMvcModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+
+
+<table class="table table-striped">
+    <thead class=" table-heading">
+        <tr>
+            <th>
+                <label class="zf-labelName">User ID</label>
+            </th>
+            <th>
+                <label class="zf-labelName">Password</label>
+            </th>
+            <th>
+                <label class="zf-labelName">Role ID</label>
+            </th>
+            <th>
+                <label class="zf-labelName">Name</label>
+            </th>
+            <th>
+                <label class="zf-labelName">Email</label>
+            </th>
+            <th>
+                <label class="zf-labelName">Phone</label>
+            </th>
+            <th>
+                <label class="zf-labelName">Gender</label>
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.userId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.roleId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gender)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit","Admin", new { id = item.userId})" class="btn btn-default"><i class="fa fa-pencil "> </i>Edit</a>|
+                <a href="@Url.Action("Delete","Admin", new { id = item.userId})" class="btn btn-default"><i class="fa fa-pencil "> </i>Delete</a>
+               @*<a onclick="Delete(@item.userId)" class="btn btn-default"><i class="fa fa-trash"></i> Delete</a>*@
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section scripts{
+    <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        });
+
+        function Delete(id) {
+            alertify.confirm('User Data', 'Are you sure you want to Delete this Record?', function () {
+                window.location.href = "@Url.Action("Delete","Admin")/"+id;
+            }, null);
+        }
+
+
+    </script>
+
+}

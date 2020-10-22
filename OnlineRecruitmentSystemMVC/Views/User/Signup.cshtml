@@ -1,0 +1,73 @@
+﻿@model OnlineRecruitmentSystemMVC.Models.UserMvcModel
+@{
+    ViewBag.Title = "SignUp";
+}
+<br>
+<center>
+    <h2>New User Registration</h2>
+</center>
+<hr />
+<br />
+<div class="form-body">
+    @using (Html.BeginForm())
+    {
+
+        @Html.HiddenFor(model => model.userId)
+
+        <div style="margin-left:450px;">
+            <label>Name</label>
+            @Html.EditorFor(model => model.name)
+            @Html.ValidationMessageFor(model => model.name)
+        </div>
+
+        <div style="margin-left:424px; margin-top:25px;">
+            <label>Password</label>
+            @Html.PasswordFor(model => model.password)
+            @Html.ValidationMessageFor(model => model.password)
+        </div>
+
+
+        <div style="margin-left:452px; margin-top:25px;">
+            <label>Email</label>
+            @Html.EditorFor(model => model.email)
+            @Html.ValidationMessageFor(model => model.email)
+        </div>
+
+
+        <div style="margin-left:447px; margin-top:25px;">
+            <label>Phone</label>
+            @Html.EditorFor(model => model.phone)
+            @Html.ValidationMessageFor(model => model.phone)
+        </div>
+
+
+        <div style="margin-left:440px; margin-top:25px;">
+            <label>Gender</label>
+            <select name="@Html.NameFor(model=>model.gender)">
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="O">Other</option>
+            </select>
+
+            @Html.ValidationMessageFor(model => model.gender, "", new { @class = "error" })
+        </div>
+
+        <div style="margin-left:458px; margin-top:25px;">
+            <label>Role</label>
+            <select name="@Html.NameFor(model => model.roleId)">
+                <option value="3">JobSeeker</option>
+                <option value="2">Employer</option>
+            </select>
+            @Html.ValidationMessageFor(model => model.roleId)
+        </div>
+
+
+        <div style="margin-left:473px; margin-top:25px;">
+            <input type="submit" value="Submit" class="btn btn-danger" style="width:100px" />
+            <input type="reset" value="Reset" class="btn btn-primary" style="width:100px" />
+        </div>
+    }
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval");
+}

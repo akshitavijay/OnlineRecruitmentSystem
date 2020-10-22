@@ -1,0 +1,96 @@
+﻿@model OnlineRecruitmentSystemMVC.Models.UserMvcModel
+@{
+    ViewBag.Title = "SignIn";
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>ORS-SignIn</title>
+</head>
+<body>
+    <center>
+        <br />
+        <h1>Welcome to Online Recruitment System</h1>
+        <hr />
+        <br />
+        <h2>Sign In</h2>
+
+        <div class="form-body">
+            <div style="width: 330px; text-align:center; height:240px; padding: 20px; border-radius: 8px; ">
+
+
+
+                @using (Html.BeginForm())
+                {
+
+                    Session["UserName"] = null; ;
+                    Session["UserId"] = null;
+
+
+                    <table style="text-align: center;">
+                        <tr>
+                            <td>
+                                <label>Email</label>
+                                &nbsp;
+                                @*@Html.LabelFor(model => model.Email)*@
+                            </td>
+                            <td style="padding: 15px;">@Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })</td>
+                            <td>@Html.ValidationMessageFor(model => model.email)</td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>Password</label>
+                                @*@Html.LabelFor(model => model.Password)*@
+                            </td>
+                            <td style="padding: 15px;">@Html.PasswordFor(model => model.password, new { @class = "form-control", placeholder = "Password" })</td>
+                            <td>@Html.ValidationMessageFor(model => model.password)</td>
+                        </tr>
+
+                    </table>
+
+
+
+                    <br />
+                    <div class="form-group">
+                        <input type="submit" value="Submit" class="btn btn-primary" style="width: 100px" ; />
+                        <input type="reset" value="Reset" class="btn btn-primary" style="margin-left: 25px; width: 100px;" />
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-12">
+                            @Html.ActionLink("Register as a New User", "SignUp", "User")
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </center>
+    <br />
+    <br />
+    <br />
+    <br />
+
+
+
+
+
+</body>
+</html>
+
+@section scripts{
+    @*@Scripts.Render("~/bundles/jqueryval");*@
+
+    <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        });
+    </script>
+}
+
+
+
+

@@ -1,0 +1,102 @@
+﻿@model OnlineRecruitmentSystemMVC.Models.EmployerMvcModel
+@{
+    ViewBag.Title = "AddOrEdit";
+}
+
+<h2>Create/Update</h2>
+<div class="form-body">
+    <div style="background-color: #f1f3f8; width: 400px; text-align:center; height:800px; padding: 40px; border-radius: 8px; ">
+        @using (Html.BeginForm())
+        {
+
+            @Html.HiddenFor(model => model.jobID)
+        <table style="text-align: center;">
+            <tr>
+                <td> @Html.LabelFor(model => model.userId)</td>
+                <td style="padding: 15px;">@Html.EditorFor(model => model.userId)</td>
+                <td> @Html.ValidationMessageFor(model => model.userId)</td>
+
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.CompName)</td>
+                <td style="padding: 15px;"> @Html.EditorFor(model => model.CompName)</td>
+                <td>  @Html.ValidationMessageFor(model => model.CompName)</td>
+
+            </tr>
+            <tr>
+
+                <td> @Html.LabelFor(model => model.JobCategory)</td>
+                <td style="padding: 15px;"> @Html.EditorFor(model => model.JobCategory)</td>
+                <td>@Html.ValidationMessageFor(model => model.JobCategory)</td>
+
+            </tr>
+            <tr>
+
+                <td> @Html.LabelFor(model => model.CurrentOpenings)</td>
+                <td style="padding: 15px;">  @Html.EditorFor(model => model.CurrentOpenings)</td>
+                <td>  @Html.ValidationMessageFor(model => model.CurrentOpenings)</td>
+            </tr>
+            <tr>
+
+                <td>  @Html.LabelFor(model => model.JoiningDate)</td>
+                <td style="padding: 15px;"> @Html.EditorFor(model => model.JoiningDate)</td>
+                <td>@Html.ValidationMessageFor(model => model.JoiningDate)</td>
+            </tr>
+            <tr>
+                <td>   @Html.LabelFor(model => model.Location)</td>
+                <td style="padding: 15px;">  @Html.EditorFor(model => model.Location)</td>
+                <td>  @Html.ValidationMessageFor(model => model.Location)</td>
+
+            </tr>
+            <tr>
+
+                <td>@Html.LabelFor(model => model.Designation)</td>
+                <td style="padding: 15px;">@Html.EditorFor(model => model.Designation)</td>
+                <td> @Html.ValidationMessageFor(model => model.Designation)</td>
+
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.Experience)</td>
+                <td style="padding: 15px;"> @Html.EditorFor(model => model.Experience)</td>
+                <td>@Html.ValidationMessageFor(model => model.Experience)</td>
+
+            </tr>
+            <tr>
+                <td>  @Html.LabelFor(model => model.Qualification)</td>
+                <td style="padding: 15px;">  @Html.EditorFor(model => model.Qualification)</td>
+                <td> @Html.ValidationMessageFor(model => model.Qualification)</td>
+
+            </tr>
+            <tr>
+
+                <td>  @Html.LabelFor(model => model.SkillSet)</td>
+                <td style="padding: 15px;"> @Html.EditorFor(model => model.SkillSet)</td>
+                <td> @Html.ValidationMessageFor(model => model.SkillSet)</td>
+
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.ContactDetails)</td>
+                <td style="padding: 15px;">  @Html.EditorFor(model => model.ContactDetails)</td>
+                <td>  @Html.ValidationMessageFor(model => model.ContactDetails)</td>
+
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.Salary)</td>
+                <td style="padding: 15px;">  @Html.EditorFor(model => model.Salary)</td>
+                <td>  @Html.ValidationMessageFor(model => model.Salary)</td>
+
+            </tr>
+        </table>
+
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary" style="width: 100px;" />
+                <input type="reset" value="Reset" class="btn btn-primary" style="margin-left: 25px; width: 100px;" />
+            </div>
+
+        }
+    </div>
+
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval");
+}

@@ -1,0 +1,65 @@
+﻿@model OnlineRecruitmentSystemMVC.Models.UserMvcModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+    <div class="form-body">
+        @using (Html.BeginForm())
+        {
+
+            @Html.HiddenFor(Model => Model.userId)
+
+            <div class=" form-group">
+                <label class="zf-labelName"><b>User Name :</b></label>
+                <div>
+                    @Html.EditorFor(Model => Model.name)
+                    @Html.ValidationMessageFor(Model => Model.name)
+                </div>
+
+
+            </div>
+
+            <div class=" form-group">
+                <label class="zf-labelName"><b>Password :</b></label>
+                <div>
+                    @Html.EditorFor(Model => Model.password)
+                    @Html.ValidationMessageFor(Model => Model.password)
+                </div>
+            </div>
+
+            <div class=" form-group">
+                <label class="zf-labelName"><b>Email :</b></label>
+                <div>
+                    @Html.EditorFor(Model => Model.email)
+                    @Html.ValidationMessageFor(Model => Model.email)
+                </div>
+            </div>
+
+            <div class=" form-group">
+                <label class="zf-labelName"><b>Phone :</b></label>
+                <div>
+                    @Html.EditorFor(Model => Model.phone)
+                    @Html.ValidationMessageFor(Model => Model.phone)
+                </div>
+            </div>
+
+            <div class=" form-group">
+                <label class="zf-labelName"><b>Gender :</b></label>
+
+                <div>
+                    @Html.EditorFor(Model => Model.gender)
+                    @Html.ValidationMessageFor(Model => Model.gender)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-success btn-lg" />
+                <input type="reset" value="Reset" class="btn btn-success btn-lg" />
+            </div>
+        }
+    </div>
+
+@section scripts
+    {
+    @Scripts.Render("~/bundles/jqueryval");
+}

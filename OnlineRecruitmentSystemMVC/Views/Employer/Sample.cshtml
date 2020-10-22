@@ -1,0 +1,126 @@
+﻿
+@model IEnumerable<OnlineRecruitmentSystemMVC.Models.EmployerMvcModel>
+
+@{
+    ViewBag.Title = "Sample";
+}
+
+
+
+<p>
+    <a href="@Url.Action("AddOrEdit","Employer")" class="btn btn-default"><i class="fa fa-plus"></i> Create New</a>
+</p>
+<table class="table table-striped">
+    <thead class="table-heading"></thead>
+    <tr>
+
+        @*<th>
+            @Html.DisplayNameFor(model => model.userId)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.CompName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentOpenings)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JoiningDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Designation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Experience)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qualification)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SkillSet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactDetails)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Salary)
+        </th>
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+
+    @*<td>
+            @Html.DisplayFor(modelItem => item.userId)
+        </td>*@
+    <td>
+        @Html.DisplayFor(modelItem => item.CompName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.JobCategory)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.JobTitle)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CurrentOpenings)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.JoiningDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Location)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Designation)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Experience)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Qualification)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SkillSet)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ContactDetails)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Salary)
+    </td>
+    <td>
+        <a href="@Url.Action("AddOrEdit","Employer",new { id=item.jobID})" class="btn btn-default"> <i class="fa fa-pencil"></i>Edit</a> |
+        <a href="@Url.Action("Delete","Employer",new { id=item.jobID})" class="btn btn-default"> <i class="fa fa-pencil"></i>Delete</a> 
+
+        @*<a onclick="Delete(@item.jobID)" class="btn btn-default"><i class="fa fa-trash"></i> Delete</a>*@
+    </td>
+</tr>
+    }
+
+</table>
+@section scripts{
+    <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        });
+
+        function Delete(id) {
+            alertify.confirm("", "Are you sure to Delete this record ?", function () {
+                window.location.href ='@Url.Action("Delete","Employer")/' + id;
+            }, null);
+        }
+    </script>
+}

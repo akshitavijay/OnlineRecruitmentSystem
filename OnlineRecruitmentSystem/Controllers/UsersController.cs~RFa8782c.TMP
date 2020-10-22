@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
+using OnlineRecruitmentSystem.Models;
+
+namespace OnlineRecruitmentSystem.Controllers
+{
+    public class UsersController : ApiController
+    {
+        private OnlineRecruitmentEntities db = new OnlineRecruitmentEntities();
+
+        [HttpPost]
+        [ResponseType(typeof(User))]
+        public IHttpActionResult SignUp(User objUser)
+        {
+            db.Users.Add(new User()
+            {
+                name = objUser.name,
+                password = objUser.password,
+                email = objUser.email,
+                gender = objUser.gender,
+                roleId = objUser.roleId,
+                phone = objUser.phone
+            });
+            db.SaveChanges();
+            return Ok();
+        }
+
+    }
+}

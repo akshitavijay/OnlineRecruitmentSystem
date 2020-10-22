@@ -1,0 +1,133 @@
+﻿@model OnlineRecruitmentSystemMVC.Models.JobSeekerMvcModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<script src="~/Scripts/bootstrap.min.js"></script>
+<style>
+    .control-label {
+        text-transform: uppercase;
+        font-size: large;
+    }
+
+    center {
+        margin-top: 5px;
+    }
+
+    #header {
+        background-color: #eee;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    #uppercase {
+        text-transform: uppercase;
+    }
+
+    #link1 {
+        width: auto;
+        font-size: large;
+    }
+</style>
+
+<div id="header" style="margin-top:10px">
+    <center><h2>JobSeeker</h2></center>
+    <center><h4>Details</h4></center>
+</div>
+
+
+
+<div>
+    <div class="container" id="details">
+        <div class="row" style="padding:15px">
+            <div class="col-md-offset-2 col-md-3 control-label" id="uppercase">
+                <b>@Html.DisplayNameFor(model => model.userId) : </b>
+            </div>
+            <div class="col-md-offset-2 col-md-5" style="font-size:18px">
+                @Html.DisplayFor(model => model.userId)
+            </div>
+        </div>
+        <div class="row" style="padding:15px">
+            <div class="col-md-offset-2 col-md-3 control-label" id="uppercase">
+                <b>@Html.DisplayNameFor(model => model.address) :</b>
+            </div>
+            <div class="col-md-offset-2 col-md-5" style="font-size:18px">
+                @Html.DisplayFor(model => model.address)
+            </div>
+        </div>
+        <div class="row" style="padding:15px">
+            <div class="col-md-offset-2 col-md-3 control-label" id="uppercase">
+                <b>@Html.DisplayNameFor(model => model.skillset) :</b>
+            </div>
+            <div class="col-md-offset-2 col-md-5" style="font-size:18px">
+                @Html.DisplayFor(model => model.skillset)
+            </div>
+        </div>
+
+        <div class="row" style="padding:15px">
+            <div class="col-md-offset-2 col-md-3 control-label" id="uppercase">
+                <b>@Html.DisplayNameFor(model => model.experience) :</b>
+            </div>
+            <div class="col-md-offset-2 col-md-5" style="font-size:18px">
+                @Html.DisplayFor(model => model.experience)
+            </div>
+        </div>
+        <div class="row" style="padding:15px">
+            <div class="col-md-offset-2 col-md-3 control-label" id="uppercase">
+                <b>@Html.DisplayNameFor(model => model.profession) :</b>
+            </div>
+            <div class="col-md-offset-2 col-md-5" style="font-size:18px">
+                @Html.DisplayFor(model => model.profession)
+            </div>
+        </div>
+        <div class="row" style="padding:15px">
+            <div class="col-md-offset-2 col-md-3 control-label" id="uppercase">
+                <b>@Html.DisplayNameFor(model => model.qualification) :</b>
+            </div>
+            <div class="col-md-offset-2 col-md-5" style="font-size:18px">
+                @Html.DisplayFor(model => model.qualification)
+
+
+            </div>
+        </div>
+        <div class="row" style="padding:15px">
+            <div class="col-md-offset-2 col-md-3 control-label" id="uppercase">
+                <b>@Html.DisplayNameFor(model => model.resume) :</b>
+            </div>
+            <div class="col-md-offset-2 col-md-5" style="font-size:18px">
+                @Html.DisplayFor(model => model.resume)
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    @if (Model.resume == "" || Model.resume == null)
+    {
+        <center>
+            <h3>**There is no Resume**</h3>
+        </center>
+    }
+    else
+    {
+        <iframe id="myframe" class="col-lg-offset-1" default="~/files/Resume1.pdf" src="@Url.Content(String.Format("~/files/{0}",Model.resume))" type="application/pdf" width="80%" height="600px"></iframe>
+
+
+    }
+
+
+</div>
+
+<hr />
+<p id="footer">
+    <center>
+        <a id="link1" href="@Url.Action("Edit","JobSeekers",new { id=Model.userId})" class="btn btn-primary"><i class="fa fa-pencil"></i>Edit</a> |
+        <a id="link1" href="@Url.Action("Index","Home")" class="btn btn-primary"><i class="fa fa-arrow-left"></i>Save</a>
+    </center>
+
+</p>
+
+

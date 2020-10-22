@@ -1,0 +1,78 @@
+﻿@model IEnumerable<OnlineRecruitmentSystemMVC.Models.JobSeekerMvcModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*<h2>Index</h2>*@
+
+<p style="padding:40px;">
+  
+     <a href="@Url.Action("Create","JobSeekers")" class="btn btn-danger"><i class="fa fa-pencil"></i> + Create New</a> 
+
+          
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <h4>JobSeekerID</h4>
+        </th>
+        <th>
+            <h4>User ID</h4>
+        </th>
+        <th>
+            <h4>Address</h4>
+        </th>
+        <th>
+            <h4>Experience</h4>
+        </th>
+        <th>
+            <h4>Profession</h4>
+        </th>
+        <th>
+            <h4>SkillSet</h4>
+        </th>
+        <th>
+            <h4>Resume</h4>
+        </th>
+        <th>
+            <h4>Profile Image</h4>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.jobSeekerID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.experience)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.profession)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.skillset)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.resume)
+        </td>
+        
+        <td>
+            <a href="@Url.Action("Edit","JobSeekers",new { id=item.userId})" class="btn btn-success"><i class="fa fa-pencil"></i>Edit</a> |
+
+            <a href="@Url.Action("Details","JobSeekers",new { id=item.userId})" class="btn btn-primary"><i class="fa fa-pencil"></i>Details</a> 
+
+          
+        </td>
+    </tr>
+}
+
+</table>

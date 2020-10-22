@@ -1,0 +1,132 @@
+﻿@model IEnumerable<OnlineRecruitmentSystemMVC.Models.EmployerMvcModel>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+
+<p>
+    @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+    {
+        <h4><b>Search By</b></h4>
+        <select class="form-control" id="searchBy" name="searchBy">
+            <option>Experience</option>
+            <option selected>Job Category</option>
+            <option>Skill Set</option>
+            <option>Location</option>
+            <option>Designation</option>
+        </select>
+        <br />
+        <input style="border:3px solid #535050; border-radius:4px; padding:5px; width: 500px; float:left"
+               type="search" name="search" placeholder="Search for Job" />
+
+        <button type="submit" value="Search" class="navbar-btn btn-primary" style="padding: 5px; border-radius:4px; height: 35px; margin-left: 8px; margin-top:1px">Search</button>
+    }
+</p>
+<br />
+<br />
+
+<table class="table">
+    <tr>
+        @*<th>
+                @Html.DisplayNameFor(model => model.JobId)
+            </th>*@
+        <th>
+
+            @Html.DisplayNameFor(model => model.CompName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentOpenings)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JoiningDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Designation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Experience)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qualification)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SkillSet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Salary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactDetails)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>*@
+
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="11">No rows match search criteria</td>
+        </tr>
+    }
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.JobID)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.CompName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentOpenings)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JoiningDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Designation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Experience)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qualification)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SkillSet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactDetails)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>*@
+
+        </tr>
+    }
+
+</table>

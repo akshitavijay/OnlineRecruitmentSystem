@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OnlineRecruitmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Employer">
+    <Key>
+      <PropertyRef Name="jobID" />
+    </Key>
+    <Property Name="jobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userId" Type="int" />
+    <Property Name="compName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="jobCategory" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="jobTitle" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="currentOpenings" Type="int" />
+    <Property Name="joiningDate" Type="date" />
+    <Property Name="location" Type="varchar" MaxLength="50" />
+    <Property Name="designation" Type="varchar" MaxLength="20" />
+    <Property Name="experience" Type="int" />
+    <Property Name="qualification" Type="varchar" MaxLength="50" />
+    <Property Name="skillSet" Type="varchar" MaxLength="40" />
+    <Property Name="contactDetails" Type="varchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="JobSeeker">
+    <Key>
+      <PropertyRef Name="jobSeekerID" />
+    </Key>
+    <Property Name="jobSeekerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userId" Type="int" />
+    <Property Name="address" Type="varchar" MaxLength="40" />
+    <Property Name="experience" Type="int" />
+    <Property Name="qualification" Type="varchar" MaxLength="50" />
+    <Property Name="profession" Type="varchar" MaxLength="20" />
+    <Property Name="skillset" Type="varchar" MaxLength="40" />
+    <Property Name="resume" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="roleId" Type="int" Nullable="false" />
+    <Property Name="roleName" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="roleId" Type="int" />
+    <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="gender" Type="char" MaxLength="1" />
+  </EntityType>
+  <Association Name="FK__Employer__userId__5165187F">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Employer" Type="Self.Employer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Employer">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__JobSeeker__userI__6FE99F9F">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="JobSeeker" Type="Self.JobSeeker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="JobSeeker">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__roleId__4BAC3F29">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="roleId" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="roleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OnlineRecruitmentModelStoreContainer">
+    <EntitySet Name="Employer" EntityType="Self.Employer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JobSeeker" EntityType="Self.JobSeeker" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Employer__userId__5165187F" Association="Self.FK__Employer__userId__5165187F">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Employer" EntitySet="Employer" />
+    </AssociationSet>
+    <AssociationSet Name="FK__JobSeeker__userI__6FE99F9F" Association="Self.FK__JobSeeker__userI__6FE99F9F">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="JobSeeker" EntitySet="JobSeeker" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__roleId__4BAC3F29" Association="Self.FK__Users__roleId__4BAC3F29">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

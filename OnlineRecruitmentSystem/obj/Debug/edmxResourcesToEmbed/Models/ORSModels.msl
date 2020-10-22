@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OnlineRecruitmentModelStoreContainer" CdmEntityContainer="OnlineRecruitmentEntities1">
+    <EntitySetMapping Name="Employers">
+      <EntityTypeMapping TypeName="OnlineRecruitmentModel.Employer">
+        <MappingFragment StoreEntitySet="Employer">
+          <ScalarProperty Name="jobID" ColumnName="jobID" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="compName" ColumnName="compName" />
+          <ScalarProperty Name="jobCategory" ColumnName="jobCategory" />
+          <ScalarProperty Name="jobTitle" ColumnName="jobTitle" />
+          <ScalarProperty Name="currentOpenings" ColumnName="currentOpenings" />
+          <ScalarProperty Name="joiningDate" ColumnName="joiningDate" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="designation" ColumnName="designation" />
+          <ScalarProperty Name="experience" ColumnName="experience" />
+          <ScalarProperty Name="qualification" ColumnName="qualification" />
+          <ScalarProperty Name="skillSet" ColumnName="skillSet" />
+          <ScalarProperty Name="contactDetails" ColumnName="contactDetails" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobSeekers">
+      <EntityTypeMapping TypeName="OnlineRecruitmentModel.JobSeeker">
+        <MappingFragment StoreEntitySet="JobSeeker">
+          <ScalarProperty Name="jobSeekerID" ColumnName="jobSeekerID" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="experience" ColumnName="experience" />
+          <ScalarProperty Name="qualification" ColumnName="qualification" />
+          <ScalarProperty Name="profession" ColumnName="profession" />
+          <ScalarProperty Name="skillset" ColumnName="skillset" />
+          <ScalarProperty Name="resume" ColumnName="resume" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="OnlineRecruitmentModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="roleName" ColumnName="roleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="OnlineRecruitmentModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

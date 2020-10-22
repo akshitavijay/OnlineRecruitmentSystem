@@ -1,0 +1,39 @@
+﻿using OnlineRecruitmentSystemMVC.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Net.Http;
+
+namespace OnlineRecruitmentSystemMVC.Controllers
+{
+    public class JobSeekersController : Controller
+    {
+        //To Get All Job Seekers
+        // GET: JobSeekers
+        public ActionResult Index()
+        {
+            IEnumerable<JobSeekerMvcModel> jobSeekerList;
+            GlobalVariables objGlobal = new GlobalVariables();
+            HttpResponseMessage response = objGlobal.WebApiClient.GetAsync("JobSeekers").Result;
+            jobSeekerList = response.Content.ReadAsAsync<IEnumerable<JobSeekerMvcModel>>().Result;
+            return View(jobSeekerList);
+        }
+
+        // POST: JobSeekers/AddJobSeeker
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(JobSeekerMvcModel objJobSeeker)
+        {
+            GlobalVariables objGlobal = new GlobalVariables();
+            HttpResponseMessage response = objGlobal.WebApiClient.PostAsJsonAsync("JobSeekers", objJobSeeker).Result;
+            return View(objJobSeeker);
+
+        }
+
+
+
+
+    }
+}

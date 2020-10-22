@@ -1,0 +1,169 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
+using OnlineRecruitmentSystem.Models;
+
+namespace OnlineRecruitmentSystem.Controllers
+{
+    public class JobSeekersController : ApiController
+    {
+        private OnlineRecruitmentEntities db = new OnlineRecruitmentEntities();
+
+        // GET: api/JobSeekers
+        public IQueryable<JobSeeker> GetJobSeekers()
+        {
+
+            return db.JobSeekers;
+        }
+
+        // GET: api/JobSeekers/5
+        [ResponseType(typeof(JobSeeker))]
+        public IHttpActionResult GetJobSeeker(int id)
+        {
+            User userObj = db.Users.Where(x => x.userId == id).FirstOrDefault();
+            JobSeeker jobSeeker;
+            if (userObj == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                jobSeeker = db.JobSeekers.Where(x => x.userId == id).FirstOrDefault();
+                if(jobSeeker==null)
+                {
+                    JobSeeker newSeeker = new JobSeeker()
+                    {
+                        jobSeekerID = 0,
+                        userId = id,
+                        address = "",
+                        experience = null,
+                        profession = "",
+                        skillset = "",
+                        resume = "",
+                        profileImg = ""
+                    };
+
+                    db.JobSeekers.Add(jobSeeker);
+
+                    db.SaveChanges();
+                  
+
+
+                    return Ok(newSeeker);
+                }
+                else
+                {
+                    JobSeeker existsSeeker = new JobSeeker()
+                    {
+                        jobSeekerID = jobSeeker.jobSeekerID,
+                        userId = id,
+                        address = jobSeeker.address,
+                        experience = jobSeeker.experience,
+                        profession = jobSeeker.profession,
+                        skillset = jobSeeker.skillset,
+                        resume = jobSeeker.resume,
+                        profileImg = jobSeeker.profileImg
+                       
+                    };
+                   
+
+                    return Ok(existsSeeker);
+                }
+
+
+            }
+          
+
+        }
+
+        // PUT: api/JobSeekers/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutJobSeeker(JobSeeker jobSeeker)
+        {
+            var updJobSeeker = db.JobSeekers.Where(x => x.jobSeekerID == jobSeeker.jobSeekerID).FirstOrDefault();
+            if(updJobSeeker!=null)
+            {
+                updJobSeeker.jobSeekerID = jobSeeker.jobSeekerID;
+                updJobSeeker.userId = jobSeeker.userId;
+                updJobSeeker.address = jobSeeker.address;
+                updJobSeeker.experience = jobSeeker.experience;
+                updJobSeeker.profession = jobSeeker.profession;
+                updJobSeeker.skillset = jobSeeker.skillset;
+                updJobSeeker.resume = jobSeeker.resume;
+                updJobSeeker.profileImg = jobSeeker.profileImg;
+                db.SaveChanges();
+
+            }
+            else{
+                return NotFound();
+            }
+
+            return Ok();
+
+        }
+
+        // POST: api/JobSeekers
+        [ResponseType(typeof(JobSeeker))]
+        public IHttpActionResult PostJobSeeker(JobSeeker jobSeeker)
+        {
+           
+
+            db.JobSeekers.Add(jobSeeker);
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                if (JobSeekerExists(jobSeeker.jobSeekerID))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = jobSeeker.jobSeekerID }, jobSeeker);
+        }
+
+        // DELETE: api/JobSeekers/5
+        [ResponseType(typeof(JobSeeker))]
+        public IHttpActionResult DeleteJobSeeker(int id)
+        {
+            JobSeeker jobSeeker = db.JobSeekers.Find(id);
+            if (jobSeeker == null)
+            {
+                return NotFound();
+            }
+
+            db.JobSeekers.Remove(jobSeeker);
+            db.SaveChanges();
+
+            return Ok(jobSeeker);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private bool JobSeekerExists(int id)
+        {
+            return db.JobSeekers.Count(e => e.jobSeekerID == id) > 0;
+        }
+    }
+}
